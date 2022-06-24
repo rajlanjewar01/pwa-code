@@ -5,11 +5,8 @@ self.addEventListener('install', function(event){
     .then(function(cache){
         cache.addAll([
             '/',
-            '/test.html',
             '/assets/js/script.js',
-            '/assets/css/main.css',
-            '/src/images/logo.png',
-            'https://fonts.googleapis.com/css2?family=League+Gothic&display=swap'
+            '/assets/css/main.css'
         ]);
     })
 });
@@ -21,12 +18,12 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event){
     event.respondWith(
         caches.match(event.request)
-        .then(function(res) {
-            if(res){
-                return res;
-            }else{
-                return fetch(event.request);
-            }
-        })
-    )
-});
+            .then(function(res) {
+                if(res){
+                    return res;
+                }else{
+                    return fetch(event.request);
+                }
+            })
+        )
+    });
